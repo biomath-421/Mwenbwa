@@ -1,23 +1,34 @@
 import React from 'react';
+import L from 'leaflet'
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
-import { icon } from "leaflet";
-import * as urbanForest from "../data/arbustum.json"
+import treepng from "../img/tree.png";
+import Trees from "../data/arbustum.json";
 import 'leaflet/dist/leaflet.css';
 
-export default function Rest() {
+const position=[50.6456, 5.5736];
+const icon = L.icon({
+  iconUrl: treepng,
+  iconSize: [100, 100],
+});
+function Rest() {
   return (
     <main>
-      <Map center={[50.6456, 5.5736]} zoom={13} zoomAnimation={true}>
+      <Map center={position} zoom={13}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-          {/* {urbanForest.map(tree =>(
-           <Marker key={tree.arbotag}
-           position={[tree.geoloc.lat,tree.geoloc.lon]} />
-          ))} */}
+          <Marker
+          icon={icon}
+          key={1770}
+          position={position}
+          >
+          <Popup>
+            <h2>{"Platanus x acerifolia"}</h2>
+          </Popup>
+          </Marker>
   </Map>
     </main>
   );
 }
-console.table(urbanForest);
+export default Rest;
